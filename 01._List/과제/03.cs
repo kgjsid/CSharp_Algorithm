@@ -115,7 +115,12 @@ namespace _01._List
                 Console.WriteLine("없는 아이템입니다.");
             else
             {
-                inventory[index].Count -= count;
+                // 생각해보니 가진 아이템 수 보다 버리는 아이템 수가 많으면 안되므로 수정
+                int dropCount = inventory[index].Count > count ? count : inventory[index].Count;
+
+                Console.WriteLine($"{inventory[index].Name}을 {dropCount}개 버립니다.");
+
+                inventory[index].Count -= dropCount;
 
                 if (inventory[index].Count == 0)
                 {
