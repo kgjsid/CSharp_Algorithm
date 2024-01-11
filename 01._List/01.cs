@@ -8,7 +8,7 @@ namespace _01._List
 {
     class _01
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             List<int> list = new List<int>();
             int number = 0;
