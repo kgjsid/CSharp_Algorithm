@@ -124,7 +124,7 @@ namespace Datastructure
 
             if (index >= 0)            // index가 있었다면(리스트에 해당 요소가 있었다면) 
             {
-                RemoveAt(index);       // 해당 인덱스 지우기
+                RemoveAt(index);       // 해당 인덱스 지우고
                 return true;
             }
             else
