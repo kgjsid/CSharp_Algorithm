@@ -102,7 +102,7 @@
         // list1.Capacity = 100000;
         // List<int> list1 = new List<int>(100000); 도 지원해주는 문법
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // 배열의 아쉬운 점? => 유동적인 공간에서 처리가 어려움
             // 정해져 있는 크기가 아닌 데이터 집합
