@@ -8,7 +8,7 @@ namespace _02._LinkedList.과제
 {
     class _02
     {
-        static void Main(string[] args)
+        static void Main3(string[] args)
         {
             int N = 7;
             int k = 3;
