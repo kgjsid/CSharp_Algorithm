@@ -104,7 +104,7 @@
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // 연결리스트 만들기(리스트와 유사)
             LinkedList<string> linkedList = new LinkedList<string>();
