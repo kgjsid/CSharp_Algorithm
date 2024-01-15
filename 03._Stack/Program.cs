@@ -44,7 +44,7 @@
         // │1│2│3│4│5│6│ │ │  =>  │1│2│3│4│5│ │ │ │
         // └─┴─┴─┴─┴─┴─┴─┴─┘      └─┴─┴─┴─┴─┴─┴─┴─┘
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // Stack 클래스를 활용하여 스택 자료구조를 이용
             Stack<int> stack = new Stack<int>();
