@@ -1,6 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-
-namespace _06._Heap
+﻿namespace _06._Heap
 {
     // 메모리 영역의 힙과 다른 자료구조 힙
 
@@ -205,6 +203,15 @@ namespace _06._Heap
             {
                 Console.WriteLine(pq.Dequeue()); // 환자6, 환자7, 환자1, 환자2, 환자5
             }
+
+            // 내림차순 : int 우선순위에 * -1을 적용하여 사용
+            PriorityQueue<string, int> pq2 = new PriorityQueue<string, int>();
+
+            pq2.Enqueue("Data1", -1);
+            pq2.Enqueue("Data2", -7);
+            pq2.Enqueue("Data3", -5);
+            pq2.Enqueue("Data4", -3);
+            pq2.Enqueue("Data5", -9);
         }
     }
 }
