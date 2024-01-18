@@ -1,4 +1,6 @@
-﻿namespace _07._Hashtable
+﻿using System.Collections;
+
+namespace _07._Hashtable
 {
     // 해시테이블 : 리스트 만큼이나 굉장히 중요한 자료 구조
 
@@ -26,9 +28,6 @@
         // 유한한 테이블의 크기에서 모든 숫자를 키 값으로 쓰기에 불가능 -> 숫자를 뭉쳐서 그 위치에 저장하자
         // 해시하고 테이블에 담자! -> 해시테이블
 
-        // 181  해  -> 31 
-        //                
-        // 601  싱  -> 1  
 
         // <해시테이블 구현>
         // 데이터를 담을 테이블을 이미 크게 확보해 놓은 후
@@ -57,9 +56,6 @@
         // 키값을 해싱하여 고유한 index를 만드는 함수
         // 하나의 키값을 해싱하는 경우 반드시 항상 같은 결과여야 함
         // 효율 : 해시의 결과가 분산적일수록 효율이 좋음(충돌 때문에)
-
-        // 1 2 3 4
-        // 1      2      3      4 => 효율 더 좋음
         
         // 1. 나눗셈법 : 데이터 % 테이블크기
 
@@ -68,7 +64,7 @@
         // key : 1121 -> 121
         // key : 338746 -> 746
 
-        // key : "pikachu"?? -> 116 + 107..
+        // key : "pikachu"?? -> 116(p) + 107(i)..
         // 어차피 문자도 메모리에 아스키코드로 들어가 있으니 충분히 가능
         // 자료에 무관하게 숫자로 바꿀 수 있으니 굉장히 쉬운 방법
 
@@ -142,7 +138,7 @@
 
         // 충돌한 지점에 이진탐색트리를 활용함 -> 그래도 logN
 
-        // 어차피 해시테이블은 크게 만들어야 하는데? -> 전체 공간 중 하나만 충돌나면?
+        // 어차피 해시테이블은 크게 만들어야 하는데? -> 극단적으로 전체 공간 중 하나만 충돌나면?
         // 나머지 공간이 너무 아까움 -> 개방 주소법(나머지 빈 공간을 쓰자!!)
 
         // <충돌해결방안 - 개방주소법> => C#의 방법
@@ -175,8 +171,19 @@
 
 
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
+            // 키 값과 값의 자료형이 정해지지 않은 경우 사용할 수 있음
+            Hashtable ht = new Hashtable();
+            // 일반화 된 Dictionary라 생각하면 좋을 듯
+            ht.Add("abc", 123);
+            ht.Add(634, "몬스터");
+
+            // 사용은 조금 까다로움. 일반화 되어 있어 형변환이 필요함
+            // (박싱 언박싱)
+            int value1 = (int)ht["abc"];
+            // 위의 방법은 장점은 있으나 형변환의 번거로움 + 속도가 느림
+
             // 해시테이블 기반의 HashSet 자료구조
             // 중복이 없는 해시기반의 저장소
             HashSet<string> set = new HashSet<string>();
@@ -184,7 +191,13 @@
 
             // SortedSet과 유사함. SortedSet은 정렬을 보장해줌
             // HashSet은 정렬을 보장해주진 않으나 삽입, 삭제, 탐색이 매우 빠름(O(1))
-           
+
+            //           SortedSet     vs     HashSet
+            //  기반 |  이진탐색트리     |     해시테이블
+            //  중복 |     허용X        |       허용X
+            //  정렬 |     보장         |       보장X
+            //  속도 |   O(log N)       |       O(1)
+
             // 삽입
             // 1. Add
             set.Add("D");
@@ -230,8 +243,8 @@
             // key 중복 불가
             // 2. TryAdd(key, value) : key값이 없다면 value 넣기
             dictionary.Add(2, "A");
-            dictionary.Add(1, "B");
-            dictionary.Add(4, "C");
+            dictionary.Add(1, "B"); 
+            dictionary.Add(4, "C"); 
             dictionary.Add(3, "D");
             dictionary.Add(5, "E");
             // dictionary.Add(4, "F");    // error : Dictionary는 key 중복을 허용하지 않음
@@ -244,9 +257,11 @@
             // 탐색
             // 1. ContainsKey(key) : key값 가지고 value 찾기
             // 2. TryGetValue(key, out T value) : key값이 있다면 value 가져오기
+            // 3. 인덱서(dictionary[key]) : key를 가지고 value 수정하기
             dictionary.ContainsKey(3);                        // 포함 확인
             dictionary.TryGetValue(3, out string dicValue);   // 탐색 시도
-
+            dictionary[4] = "F";
+            
             // 순서대로 출력시 정렬된 결과 확인
             foreach (string value in dictionary.Values)
             {
