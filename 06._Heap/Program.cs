@@ -164,7 +164,7 @@
         // -> 인덱스로 접근이 가능하니 노드 기반보다 배열 기반이 훨씬 더 효율적이다
 
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // 기준을 가지고 빨리빨리 처리해야 함(응급실 상황?)
             Queue<string> queue = new Queue<string>();
