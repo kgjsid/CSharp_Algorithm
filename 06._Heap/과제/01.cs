@@ -14,7 +14,7 @@ namespace _06._Heap.과제
 {
     class _01
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             int N;
             int.TryParse(Console.ReadLine(), out N);
