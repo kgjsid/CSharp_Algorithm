@@ -5,7 +5,7 @@
         // 프로그램 작성 시 순서대로 작성하기가 많이 필요함
         // ex) 경매장 시스템
 
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             Random random = new Random();
             int count = 10;
