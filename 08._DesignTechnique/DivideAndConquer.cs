@@ -43,13 +43,15 @@ namespace _08._DesignTechnique
             return Pow(x, n / 2) * Pow(x, n / 2);
             */
 
+            // 반분할
+            int result = Pow(x, n / 2);
             if (n % 2 == 0)
             {
-                return Pow(x * x, n / 2);
+                return result * result;
             }
             else
             {   // 홀수 인 경우(2 ^ 7) -> 2 ^ 3 * 2 ^ 3 * 2
-                return Pow(x * x, n / 2) * x;
+                return result * result * x;
             }
             
         }
