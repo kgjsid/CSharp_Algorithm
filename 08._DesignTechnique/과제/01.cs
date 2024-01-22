@@ -1,51 +1,41 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
 
 namespace _08._DesignTechnique.과제
 {
-    // 연속 합
-    // 백트래킹 : 반드시 결과는 찾을 수 있음
-    // 동적계획법 : 작은 문제의 해답을 이용해서 큰 문제 해결 가능
-    class _01
+    public class _01
     {
-        static void Main1(string[] args)
+        static void Main(string[] args)
         {
-            int n;
-            n = int.Parse(Console.ReadLine());
+            int N;
 
-            List<int> list = new List<int>();
+            N = int.Parse(Console.ReadLine());
 
-            string[] temp = Console.ReadLine().Split(' ');
-
-            for(int i = 0; i < n; i++)
-            {
-                list.Add(int.Parse(temp[i]));
-            }
-            // ex) [2, 4] => 2 ~ 4를 더한 값
-            int[] result = new int[n * n];
+            // 숫자를 담을 배열
+            int[] arr = new int[N];
+            // 중간중간 합 확인
+            int[] dp = new int[N];
             int max = int.MinValue;
 
-            // [1, 1] => 1, [2, 2] => 2
-            for(int i = 0; i < n; i++)
+            string[] temp = Console.ReadLine().Split(' ');
+            for (int i = 0; i < temp.Length; i++)
             {
-                result[i * 10 + i] = list[i];
-                if (max < result[i * 10 + i])
-                {
-                    max = result[i * 10 + i];
-                }
+                arr[i] = int.Parse(temp[i]);
             }
 
-            // result[1, 3] => result[1, 2] + result[3, 3]
-            for(int start = 0; start < n - 1; start++)
+            dp[0] = arr[0];
+            max = dp[0];
+
+            for (int i = 1; i < arr.Length; i++)
             {
-                for(int end = start + 1; end < n; end++)
+                // 다음 합 계산. 만약 이전까지의 합 + 새로운 수와 새로운 수를 비교함
+                // 만약 기존 수열의 합이 더 크가면 현재 숫자를 연속된 수열에 포함시키는게 좋음
+                // 아니라면 값이 적으므로 다시 수열을 만드는 것이 좋음 -> 해당 수열부터 시작
+                dp[i] = dp[i - 1] + arr[i] > arr[i] ? dp[i - 1] + arr[i] : arr[i];
+                if (dp[i] > max)
                 {
-                   
+                    max = dp[i];
                 }
             }
 
