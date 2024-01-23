@@ -257,7 +257,7 @@ namespace _09._Sort
                     break;
                 }
             }
-
+            
             // 왼쪽끼리 퀵 정렬
             QuickSort(list, start, right - 1);
             // 오른쪽끼리 퀵 정렬
